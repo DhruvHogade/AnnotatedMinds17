@@ -28,28 +28,20 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/quotes', quoteRoutes);
 app.use('/api/goals', goalRoutes);
 
-// Diagnostics for Render
-import fs from 'fs';
-const clientDistPath = path.resolve(__dirname, '../client/dist');
-console.log('__dirname:', __dirname);
-console.log('Looking for client/dist at:', clientDistPath);
-if (fs.existsSync(clientDistPath)) {
-  console.log('client/dist found!');
-  console.log('Contents:', fs.readdirSync(clientDistPath));
-} else {
-  console.log('client/dist NOT found!');
-  // Try checking the parent directory
-  const parentPath = path.resolve(__dirname, '..');
-  console.log('Parent directory contents:', fs.readdirSync(parentPath));
-}
+// Identify the absolute path to the client/dist folder
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
 
-// Serve static files from the React app
+console.log('Looking for client/dist at:', clientDistPath);
+
 app.use(express.static(clientDistPath));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
 app.use((req, res) => {
-  res.sendFile(path.join(clientDistPath, 'index.html'));
+  res.sendFile(path.join(clientDistPath, 'index.html'), (err) => {
+    if (err) {
+      console.error('Error sending index.html:', err);
+      res.status(500).send(err);
+    }
+  });
 });
 
 // MongoDB connection
@@ -58,6 +50,6 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });
