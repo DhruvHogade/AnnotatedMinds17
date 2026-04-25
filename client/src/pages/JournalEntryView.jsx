@@ -93,29 +93,29 @@ export default function JournalEntryView() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-8 animate-fade-in relative">
-      <div className="flex justify-between items-center mb-8">
-        <button onClick={() => navigate('/library')} className="text-sage hover:text-mahogany transition-colors flex items-center gap-2 font-serif uppercase tracking-widest text-sm">
+    <div className="max-w-6xl mx-auto py-4 md:py-8 px-4 md:px-0 animate-fade-in relative">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <button onClick={() => navigate('/library')} className="text-sage hover:text-mahogany transition-colors flex items-center gap-2 font-serif uppercase tracking-widest text-xs md:text-sm">
           <ArrowLeft size={18} /> Back to Library
         </button>
-        <div className="flex gap-3 flex-wrap justify-end">
-          <button onClick={handleExportImage} className="px-3 py-1.5 bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-white rounded-md flex items-center gap-2 font-serif text-sm transition-colors border border-mahogany/30 shadow-sm">
-            <ImageIcon size={16} /> Export Image
+        <div className="flex gap-2 md:gap-3 flex-wrap justify-start sm:justify-end w-full sm:w-auto">
+          <button onClick={handleExportImage} className="flex-1 sm:flex-none px-3 py-1.5 bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-white rounded-md flex items-center justify-center gap-2 font-serif text-[11px] md:text-sm transition-colors border border-mahogany/30 shadow-sm">
+            <ImageIcon size={14} className="md:w-[16px] md:h-[16px]" /> Image
           </button>
-          <button onClick={handleExportPDF} className="px-3 py-1.5 bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-white rounded-md flex items-center gap-2 font-serif text-sm transition-colors border border-mahogany/30 shadow-sm">
-            <FileText size={16} /> Export PDF
+          <button onClick={handleExportPDF} className="flex-1 sm:flex-none px-3 py-1.5 bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-white rounded-md flex items-center justify-center gap-2 font-serif text-[11px] md:text-sm transition-colors border border-mahogany/30 shadow-sm">
+            <FileText size={14} className="md:w-[16px] md:h-[16px]" /> PDF
           </button>
-          <div className="w-px h-8 bg-mahogany/20 mx-1"></div>
-          <button onClick={() => navigate(`/review/${id}/edit`)} className="px-3 py-1.5 bg-sage/10 text-sage hover:bg-sage hover:text-white rounded-md flex items-center gap-2 font-serif text-sm transition-colors border border-sage/30 shadow-sm">
-            <PenLine size={16} /> Edit
+          <div className="hidden sm:block w-px h-8 bg-mahogany/20 mx-1"></div>
+          <button onClick={() => navigate(`/review/${id}/edit`)} className="flex-1 sm:flex-none px-3 py-1.5 bg-sage/10 text-sage hover:bg-sage hover:text-white rounded-md flex items-center justify-center gap-2 font-serif text-[11px] md:text-sm transition-colors border border-sage/30 shadow-sm">
+            <PenLine size={14} className="md:w-[16px] md:h-[16px]" /> Edit
           </button>
-          <button onClick={() => setShowDeleteConfirm(true)} className="px-3 py-1.5 bg-red-50 text-red-800 hover:bg-red-800 hover:text-white rounded-md flex items-center gap-2 font-serif text-sm transition-colors border border-red-200 shadow-sm">
-            <Trash2 size={16} /> Delete
+          <button onClick={() => setShowDeleteConfirm(true)} className="flex-1 sm:flex-none px-3 py-1.5 bg-red-50 text-red-800 hover:bg-red-800 hover:text-white rounded-md flex items-center justify-center gap-2 font-serif text-[11px] md:text-sm transition-colors border border-red-200 shadow-sm">
+            <Trash2 size={14} className="md:w-[16px] md:h-[16px]" /> Delete
           </button>
         </div>
       </div>
       
-      <div className="bg-parchment shadow-2xl rounded-xl p-8 relative overflow-hidden flex flex-col border border-mahogany/10"
+      <div className="bg-parchment shadow-2xl rounded-xl p-4 md:p-8 relative overflow-hidden flex flex-col border border-mahogany/10"
             style={{ 
               backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, rgba(143, 151, 121, 0.2) 31px, rgba(143, 151, 121, 0.2) 32px)',
               backgroundAttachment: 'local',
@@ -123,43 +123,43 @@ export default function JournalEntryView() {
             }}>
             
         {/* Top Stripe: Basic Info */}
-        <div className="mb-8 flex flex-col md:flex-row items-start gap-8 bg-white/50 p-6 rounded-lg backdrop-blur-sm border border-mahogany/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]">
-          <div className="flex flex-col gap-3 flex-shrink-0 w-32">
+        <div className="mb-8 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-white/50 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-mahogany/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]">
+          <div className="flex flex-col gap-3 flex-shrink-0">
             {entry.coverImageUrl ? (
-              <img src={entry.coverImageUrl} alt="Cover" className="w-32 h-48 object-cover rounded shadow-lg border border-mahogany/20" />
+              <img src={entry.coverImageUrl} alt="Cover" className="w-24 md:w-32 h-36 md:h-48 object-cover rounded shadow-lg border border-mahogany/20 mx-auto" />
             ) : (
-              <div className="w-32 h-48 bg-mahogany/5 flex items-center justify-center rounded shadow-inner border border-mahogany/20 font-serif text-sm text-mahogany/50 text-center p-2">No Cover</div>
+              <div className="w-24 md:w-32 h-36 md:h-48 bg-mahogany/5 flex items-center justify-center rounded shadow-inner border border-mahogany/20 font-serif text-xs md:text-sm text-mahogany/50 text-center p-2 mx-auto">No Cover</div>
             )}
           </div>
           
           <div className="flex-1 w-full space-y-6">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <label className="block font-serif text-mahogany text-sm font-bold tracking-wider uppercase mb-1">Title</label>
-                <div className="w-full border-b border-mahogany/40 font-garamond text-3xl text-ink leading-tight pb-1">{entry.title}</div>
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <label className="block font-serif text-mahogany text-[10px] md:text-sm font-bold tracking-wider uppercase mb-1">Title</label>
+                <div className="w-full border-b border-mahogany/40 font-garamond text-xl md:text-3xl text-ink leading-tight pb-1">{entry.title}</div>
               </div>
-              <div className="flex-1">
-                <label className="block font-serif text-mahogany text-sm font-bold tracking-wider uppercase mb-1">Author</label>
-                <div className="w-full border-b border-mahogany/40 font-garamond text-2xl text-ink leading-tight pb-1">{entry.author}</div>
+              <div className="flex-1 text-center md:text-left">
+                <label className="block font-serif text-mahogany text-[10px] md:text-sm font-bold tracking-wider uppercase mb-1">Author</label>
+                <div className="w-full border-b border-mahogany/40 font-garamond text-lg md:text-2xl text-ink leading-tight pb-1">{entry.author}</div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               <div>
-                <label className="block font-serif text-mahogany text-xs font-bold tracking-wider uppercase mb-1">Publisher</label>
-                <div className="w-full border-b border-mahogany/30 font-garamond text-lg text-ink leading-tight min-h-[28px]">{entry.publisher}</div>
+                <label className="block font-serif text-mahogany text-[9px] md:text-xs font-bold tracking-wider uppercase mb-1">Publisher</label>
+                <div className="w-full border-b border-mahogany/30 font-garamond text-sm md:text-lg text-ink leading-tight min-h-[24px] md:min-h-[28px]">{entry.publisher}</div>
               </div>
               <div>
-                <label className="block font-serif text-mahogany text-xs font-bold tracking-wider uppercase mb-1">Page Count</label>
-                <div className="w-full border-b border-mahogany/30 font-garamond text-lg text-ink leading-tight min-h-[28px]">{entry.pageCount}</div>
+                <label className="block font-serif text-mahogany text-[9px] md:text-xs font-bold tracking-wider uppercase mb-1">Page Count</label>
+                <div className="w-full border-b border-mahogany/30 font-garamond text-sm md:text-lg text-ink leading-tight min-h-[24px] md:min-h-[28px]">{entry.pageCount}</div>
               </div>
               <div>
-                <label className="block font-serif text-mahogany text-xs font-bold tracking-wider uppercase mb-1">Genre</label>
-                <div className="w-full border-b border-mahogany/30 font-garamond text-lg text-ink leading-tight min-h-[28px]">{entry.genre}</div>
+                <label className="block font-serif text-mahogany text-[9px] md:text-xs font-bold tracking-wider uppercase mb-1">Genre</label>
+                <div className="w-full border-b border-mahogany/30 font-garamond text-sm md:text-lg text-ink leading-tight min-h-[24px] md:min-h-[28px]">{entry.genre}</div>
               </div>
               <div>
-                <label className="block font-serif text-mahogany text-xs font-bold tracking-wider uppercase mb-1">Format</label>
-                <div className="w-full border-b border-mahogany/30 font-garamond text-lg text-ink pb-1">{entry.format}</div>
+                <label className="block font-serif text-mahogany text-[9px] md:text-xs font-bold tracking-wider uppercase mb-1">Format</label>
+                <div className="w-full border-b border-mahogany/30 font-garamond text-sm md:text-lg text-ink pb-1">{entry.format}</div>
               </div>
             </div>
           </div>

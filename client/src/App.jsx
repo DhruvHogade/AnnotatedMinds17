@@ -19,9 +19,9 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-contentBg text-textDark font-sans flex">
+      <div className="min-h-screen bg-contentBg text-textDark font-sans flex flex-col md:flex-row">
         {isAuthenticated && <Sidebar />}
-        <main className="flex-1 p-8 max-w-7xl mx-auto w-full overflow-y-auto">
+        <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/library" element={<Library />} />

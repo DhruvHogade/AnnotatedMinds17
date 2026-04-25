@@ -118,64 +118,64 @@ export default function ReadingStrategy() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-8 space-y-12">
+    <div className="max-w-6xl mx-auto py-6 md:py-8 px-4 md:px-0 space-y-8 md:space-y-12">
       {/* Header */}
-      <div className="flex justify-between items-center bg-white/60 p-8 rounded-lg shadow-sm border border-sage/20 washi-tape">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white/60 p-4 md:p-8 rounded-lg shadow-sm border border-sage/20 washi-tape">
         <div>
-          <h1 className="text-4xl font-bold text-mahogany font-serif">Reading Strategy</h1>
-          <p className="text-ink/60 italic font-serif mt-1">"The reading of all good books is like a conversation with the finest minds."</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-mahogany font-serif">Reading Strategy</h1>
+          <p className="text-ink/60 italic font-serif mt-1 text-sm md:text-base">"The reading of all good books is like a conversation with the finest minds."</p>
         </div>
-        <div className="flex gap-4">
-          <div className="text-center px-6 py-2 bg-mahogany/5 rounded-md border border-mahogany/20 shadow-inner">
+        <div className="flex gap-4 w-full md:w-auto">
+          <div className="flex-1 md:flex-none text-center px-4 md:px-6 py-2 bg-mahogany/5 rounded-md border border-mahogany/20 shadow-inner">
             <span className="block text-[10px] font-bold uppercase tracking-widest text-mahogany">Current Streak</span>
-            <span className="text-3xl font-serif text-ink flex items-center justify-center gap-2">
-              <Flame size={24} className="text-sienna fill-sienna animate-pulse" />
+            <span className="text-2xl md:text-3xl font-serif text-ink flex items-center justify-center gap-2">
+              <Flame size={20} className="text-sienna fill-sienna animate-pulse md:w-[24px] md:h-[24px]" />
               {goals.currentStreak} Days
             </span>
           </div>
           <button 
             onClick={pickNextRead}
-            className="flex flex-col items-center justify-center px-6 py-2 bg-sage/10 rounded-md border border-sage/20 hover:bg-sage/20 transition-all text-sage group"
+            className="flex flex-col items-center justify-center px-4 md:px-6 py-2 bg-sage/10 rounded-md border border-sage/20 hover:bg-sage/20 transition-all text-sage group md:w-auto"
           >
-            <Dice5 size={24} className="group-hover:rotate-180 transition-transform duration-500" />
+            <Dice5 size={20} className="group-hover:rotate-180 transition-transform duration-500 md:w-[24px] md:h-[24px]" />
             <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Decide Next</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         {/* Left: Goals & Streaks */}
-        <div className="col-span-8 space-y-8">
-          <section className="bg-white/60 p-8 rounded-lg shadow-sm border border-sage/20">
-            <div className="flex items-center gap-3 mb-8">
+        <div className="col-span-1 md:col-span-8 space-y-8">
+          <section className="bg-white/60 p-4 md:p-8 rounded-lg shadow-sm border border-sage/20">
+            <div className="flex items-center gap-3 mb-6 md:mb-8">
               <Target size={24} className="text-mahogany" />
-              <h2 className="text-xl font-bold uppercase tracking-wider text-ink font-serif">Mission Objectives</h2>
+              <h2 className="text-lg md:text-xl font-bold uppercase tracking-wider text-ink font-serif">Mission Objectives</h2>
             </div>
             
-            <div className="grid grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <label className="block text-xs font-bold uppercase tracking-widest text-textGray">Yearly Book Target</label>
-                <div className="flex items-center gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+              <div className="space-y-4 text-center sm:text-left">
+                <label className="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-textGray">Yearly Book Target</label>
+                <div className="flex items-center justify-center sm:justify-start gap-4">
                    <input 
                     type="number" 
                     value={goals.yearlyBookGoal}
                     onChange={(e) => updateGoals({ yearlyBookGoal: Number(e.target.value) })}
-                    className="w-24 bg-transparent border-b-2 border-mahogany/30 focus:border-mahogany outline-none text-3xl font-serif text-ink pb-1"
+                    className="w-20 md:w-24 bg-transparent border-b-2 border-mahogany/30 focus:border-mahogany outline-none text-2xl md:text-3xl font-serif text-ink pb-1"
                   />
-                  <span className="text-sage font-serif italic text-lg pt-2">Volumes to be archived</span>
+                  <span className="text-sage font-serif italic text-sm md:text-lg pt-2">Volumes</span>
                 </div>
               </div>
               
-              <div className="space-y-4">
-                <label className="block text-xs font-bold uppercase tracking-widest text-textGray">Daily Page Goal</label>
-                <div className="flex items-center gap-4">
+              <div className="space-y-4 text-center sm:text-left">
+                <label className="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-textGray">Daily Page Goal</label>
+                <div className="flex items-center justify-center sm:justify-start gap-4">
                    <input 
                     type="number" 
                     value={goals.dailyPageGoal}
                     onChange={(e) => updateGoals({ dailyPageGoal: Number(e.target.value) })}
-                    className="w-24 bg-transparent border-b-2 border-mahogany/30 focus:border-mahogany outline-none text-3xl font-serif text-ink pb-1"
+                    className="w-20 md:w-24 bg-transparent border-b-2 border-mahogany/30 focus:border-mahogany outline-none text-2xl md:text-3xl font-serif text-ink pb-1"
                   />
-                  <span className="text-sage font-serif italic text-lg pt-2">Pages/Day Target</span>
+                  <span className="text-sage font-serif italic text-sm md:text-lg pt-2">Pages/Day</span>
                 </div>
               </div>
             </div>
@@ -183,40 +183,37 @@ export default function ReadingStrategy() {
 
           {/* PACE CALCULATOR */}
           {currentBook && (
-            <section className="bg-mahogany/5 p-8 rounded-lg border border-mahogany/10 shadow-inner relative overflow-hidden">
-              <div className="relative z-10 flex items-center justify-between">
+            <section className="bg-mahogany/5 p-4 md:p-8 rounded-lg border border-mahogany/10 shadow-inner relative overflow-hidden">
+              <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-lg font-bold text-mahogany font-serif uppercase tracking-tight">The Pace Calculator</h3>
-                  <p className="text-ink/70 font-serif italic mt-1">Analyzing your current reading journey...</p>
+                  <h3 className="text-base md:text-lg font-bold text-mahogany font-serif uppercase tracking-tight">The Pace Calculator</h3>
+                  <p className="text-ink/70 font-serif italic mt-1 text-sm md:text-base">Analyzing your current reading journey...</p>
                   
-                  <div className="mt-6 flex items-center gap-12">
+                  <div className="mt-6 flex flex-wrap items-center gap-8 md:gap-12">
                     <div>
                       <span className="block text-[10px] font-bold uppercase text-mahogany/60 tracking-widest mb-1">Current Book</span>
-                      <span className="text-xl font-bold text-ink">{currentBook.title}</span>
+                      <span className="text-lg md:text-xl font-bold text-ink line-clamp-1">{currentBook.title}</span>
                     </div>
                     <div>
                       <span className="block text-[10px] font-bold uppercase text-mahogany/60 tracking-widest mb-1">Predicted Finish</span>
-                      <span className="text-2xl font-serif text-mahogany font-bold">{calculatePace()}</span>
+                      <span className="text-xl md:text-2xl font-serif text-mahogany font-bold">{calculatePace()}</span>
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 bg-white/80 px-4 py-2 rounded shadow-sm border border-sage/20">
-                  <RefreshCw size={14} className="text-sage" />
-                  <span className="text-[10px] font-bold text-ink uppercase tracking-widest">Live Syncing</span>
+                <div className="flex items-center gap-2 bg-white/80 px-3 py-1.5 md:px-4 md:py-2 rounded shadow-sm border border-sage/20 self-end md:self-auto">
+                  <RefreshCw size={12} className="text-sage" />
+                  <span className="text-[9px] md:text-[10px] font-bold text-ink uppercase tracking-widest">Live Syncing</span>
                 </div>
-              </div>
-              <div className="absolute top-0 right-0 opacity-10 -translate-y-1/2 translate-x-1/4">
-                <RefreshCw size={200} />
               </div>
             </section>
           )}
 
           {/* MILESTONES */}
-          <section className="bg-white/60 p-8 rounded-lg border border-sage/20 shadow-sm">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-textGray mb-6 flex items-center gap-2">
+          <section className="bg-white/60 p-4 md:p-8 rounded-lg border border-sage/20 shadow-sm">
+            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-textGray mb-6 flex items-center gap-2">
               <CheckCircle size={14} className="text-sage" /> Milestone Achievements
             </h3>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               {['Century Club', 'Consistency King'].map(badge => {
                 const earned = goals.milestones.find(m => m.name === badge);
                 return (
@@ -224,7 +221,7 @@ export default function ReadingStrategy() {
                     earned ? 'bg-sage/20 border-sage text-sage font-bold' : 'bg-gray-100 border-gray-200 text-gray-400 opacity-50 grayscale'
                   }`}>
                     <CheckCircle size={14} />
-                    <span className="text-[10px] uppercase tracking-widest">{badge}</span>
+                    <span className="text-[9px] md:text-[10px] uppercase tracking-widest">{badge}</span>
                   </div>
                 );
               })}
@@ -233,8 +230,8 @@ export default function ReadingStrategy() {
         </div>
 
         {/* Right: Buy List / Wishlist */}
-        <div className="col-span-4 space-y-8">
-           <section className="bg-[#FAF8F5] p-6 rounded-lg border border-[#E5E0D8] shadow-sm flex flex-col h-full">
+        <div className="col-span-1 md:col-span-4 space-y-8">
+           <section className="bg-[#FAF8F5] p-4 md:p-6 rounded-lg border border-[#E5E0D8] shadow-sm flex flex-col h-full">
             <div className="flex items-center gap-3 mb-6">
               <ShoppingCart size={20} className="text-mahogany" />
               <h2 className="text-lg font-bold uppercase tracking-wider text-ink font-serif">The Buy List</h2>

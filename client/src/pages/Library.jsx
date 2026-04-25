@@ -135,25 +135,25 @@ export default function Library() {
   const tabs = ['All', 'Currently Reading', 'To-Read', 'Finished', 'Bucket List'];
 
   return (
-    <div className="space-y-8 pb-20">
-      <div className="flex justify-between items-center">
+    <div className="space-y-6 md:space-y-8 pb-20">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-mahogany">Personal Library</h1>
-          <p className="text-ink/60 font-serif italic mt-1">"A library is not a luxury but one of the necessities of life."</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-mahogany">Personal Library</h1>
+          <p className="text-ink/60 font-serif italic mt-1 text-sm md:text-base">"A library is not a luxury but one of the necessities of life."</p>
         </div>
-        <button onClick={() => { setEditingBook(null); setIsAdding(true); }} className="btn-primary flex items-center gap-2">
+        <button onClick={() => { setEditingBook(null); setIsAdding(true); }} className="btn-primary flex items-center gap-2 w-full md:w-auto justify-center">
           <Plus size={18} /> Catalog New Work
         </button>
       </div>
 
-      {/* Stylized Tabs */}
-      <div className="flex items-center justify-between border-b border-sage/30 pb-px">
-        <div className="flex gap-8">
+      {/* Stylized Tabs - Scrollable on mobile */}
+      <div className="flex items-center justify-between border-b border-sage/30 pb-px overflow-x-auto hide-scrollbar">
+        <div className="flex gap-4 md:gap-8 whitespace-nowrap min-w-max">
           {tabs.map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`pb-4 text-sm font-bold tracking-widest uppercase transition-all relative ${
+              className={`pb-4 text-[11px] md:text-sm font-bold tracking-widest uppercase transition-all relative ${
                 activeTab === tab ? 'text-mahogany' : 'text-ink/40 hover:text-ink/60'
               }`}
             >
@@ -165,7 +165,7 @@ export default function Library() {
           ))}
         </div>
         
-        <div className="flex gap-2 bg-sage/10 p-1 rounded-md border border-sage/20">
+        <div className="hidden md:flex gap-2 bg-sage/10 p-1 rounded-md border border-sage/20 flex-shrink-0">
           <button onClick={() => setViewMode('grid')} className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow-sm text-mahogany' : 'text-ink/40'}`}><LayoutGrid size={16} /></button>
           <button onClick={() => setViewMode('list')} className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow-sm text-mahogany' : 'text-ink/40'}`}><List size={16} /></button>
         </div>

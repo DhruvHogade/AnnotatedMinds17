@@ -136,45 +136,45 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F5E6CA] pb-12 w-[900px] mx-auto mt-4 px-12 pt-8 font-sans bg-[url('/parchment-texture.png')] bg-cover">
+    <div className="relative min-h-screen bg-[#F5E6CA] pb-12 w-full max-w-[900px] mx-auto mt-4 px-4 md:px-12 pt-4 md:pt-8 font-sans bg-[url('/parchment-texture.png')] bg-cover">
 
-      {/* Decorative Assets */}
-      <img src="/assets/vintage_desk_lamp.png" alt="Lamp" className="absolute top-[20px] -right-[30px] w-32 mix-blend-multiply z-50 pointer-events-none drop-shadow-2xl" />
-      <img src="/assets/3d_coffee_cup.png" alt="Coffee" className="absolute top-[400px] right-[10px] w-24 mix-blend-multiply z-50 pointer-events-none drop-shadow-xl" />
-      <img src="/assets/open_book.png" alt="Open Book" className="absolute bottom-[200px] -left-[40px] w-28 mix-blend-multiply z-50 pointer-events-none rotate-12 drop-shadow-lg" />
-      <img src="/assets/fountain_pen.png" alt="Pen" className="absolute bottom-[30px] right-[0px] w-28 mix-blend-multiply z-50 pointer-events-none -rotate-12 drop-shadow-md" />
+      {/* Decorative Assets - Hidden on Mobile */}
+      <img src="/assets/vintage_desk_lamp.png" alt="Lamp" className="hidden lg:block absolute top-[20px] -right-[30px] w-32 mix-blend-multiply z-50 pointer-events-none drop-shadow-2xl" />
+      <img src="/assets/3d_coffee_cup.png" alt="Coffee" className="hidden lg:block absolute top-[400px] right-[10px] w-24 mix-blend-multiply z-50 pointer-events-none drop-shadow-xl" />
+      <img src="/assets/open_book.png" alt="Open Book" className="hidden lg:block absolute bottom-[200px] -left-[40px] w-28 mix-blend-multiply z-50 pointer-events-none rotate-12 drop-shadow-lg" />
+      <img src="/assets/fountain_pen.png" alt="Pen" className="hidden lg:block absolute bottom-[30px] right-[0px] w-28 mix-blend-multiply z-50 pointer-events-none -rotate-12 drop-shadow-md" />
 
       {/* Header Image */}
-      <div className="w-full h-44 overflow-hidden rounded-md mb-6 border-4 border-white shadow-md relative group">
+      <div className="w-full h-32 md:h-44 overflow-hidden rounded-md mb-6 border-4 border-white shadow-md relative group">
         <div className="absolute inset-0 bg-mahogany/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
         <img src="/assets/header_illustration.png" alt="Reading Space" className="w-full h-full object-cover" />
       </div>
 
       {/* Header Text */}
-      <div className="text-center mb-8 relative z-20 flex justify-center items-center gap-8">
-        <h1 className="text-[36px] leading-[1.2] font-serif text-mahogany inline-block border-b-2 border-mahogany/20 pb-2">
-          Reading Space <span className="text-sage mx-2">|</span> Annotated.Minds17
+      <div className="text-center mb-8 relative z-20 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+        <h1 className="text-[24px] md:text-[36px] leading-[1.2] font-serif text-mahogany inline-block border-b-2 border-mahogany/20 pb-2 text-center">
+          Reading Space <span className="text-sage mx-1 md:mx-2">|</span> Annotated.Minds17
         </h1>
         {currentStreak > 0 && (
-          <div className="flex items-center gap-2 bg-sienna/10 px-4 py-2 rounded-full border border-sienna/20">
-            <Flame size={20} className="text-sienna fill-sienna" />
-            <span className="font-serif font-bold text-sienna">{currentStreak} Day Streak!</span>
+          <div className="flex items-center gap-2 bg-sienna/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-sienna/20">
+            <Flame size={16} className="text-sienna fill-sienna md:w-[20px] md:h-[20px]" />
+            <span className="font-serif font-bold text-sienna text-xs md:text-base">{currentStreak} Day Streak!</span>
           </div>
         )}
       </div>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-12 gap-6 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
 
         {/* ROW 1 */}
         {/* CURRENTLY READING */}
-        <section className="col-span-8 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 relative overflow-hidden">
+        <section className="col-span-1 md:col-span-8 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-4 md:p-5 relative overflow-hidden">
           <WidgetHeader icon={BookOpen} title="CURRENTLY READING" />
 
-          <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+          <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory">
             {currentlyReading.length > 0 ? (
               currentlyReading.slice(0, 3).map(book => (
-                <div key={book._id} className="min-w-[200px] relative">
+                <div key={book._id} className="min-w-[180px] md:min-w-[200px] relative snap-start">
                   <BookCard
                     book={book}
                     onUpdate={() => openUpdateModal(book)}
@@ -215,16 +215,16 @@ export default function Dashboard() {
                 </div>
               ))
             ) : (
-              <div className="w-full text-center text-ink/50 font-serif italic py-8">No books currently on your nightstand.</div>
+              <div className="w-full text-center text-ink/50 font-serif italic py-8 text-sm">No books currently on your nightstand.</div>
             )}
           </div>
         </section>
 
         {/* READING GOALS */}
-        <section className="col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col items-center justify-center">
+        <section className="col-span-1 md:col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col items-center justify-center">
           <WidgetHeader icon={Target} title="YEARLY GOAL" />
-          <p className="text-[13px] font-serif italic text-ink/70 mb-4 text-center">Books Finished in 2024</p>
-          <div className="w-[160px] h-[160px] relative">
+          <p className="text-[12px] md:text-[13px] font-serif italic text-ink/70 mb-4 text-center">Books Finished in 2024</p>
+          <div className="w-[140px] h-[140px] md:w-[160px] md:h-[160px] relative">
             <CircularProgressbarWithChildren
               value={stats ? stats.booksFinished : 0}
               maxValue={readingGoal}
@@ -236,11 +236,11 @@ export default function Dashboard() {
               })}
             >
               <div className="flex flex-col items-center justify-center mt-2">
-                <span className="text-[32px] font-serif font-bold text-ink tracking-tight drop-shadow-sm">
+                <span className="text-[28px] md:text-[32px] font-serif font-bold text-ink tracking-tight drop-shadow-sm">
                   {stats ? stats.booksFinished : 0}
                 </span>
-                <div className="w-8 h-[1px] bg-mahogany/30 my-1"></div>
-                <span className="text-[14px] font-medium text-ink/60 tracking-wider">
+                <div className="w-6 md:w-8 h-[1px] bg-mahogany/30 my-1"></div>
+                <span className="text-[12px] md:text-[14px] font-medium text-ink/60 tracking-wider">
                   {readingGoal}
                 </span>
               </div>
@@ -250,11 +250,11 @@ export default function Dashboard() {
 
         {/* ROW 2 */}
         {/* MONTHLY READING LOG */}
-        <section className="col-span-8 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5">
+        <section className="col-span-1 md:col-span-8 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-4 md:p-5">
           <WidgetHeader icon={BookOpen} title="RECENT REVIEWS LOG" />
 
-          <div className="overflow-hidden mt-2 border border-ink/20 rounded-sm hand-inked-border">
-            <table className="w-full text-left border-collapse text-[12px] font-sans">
+          <div className="overflow-x-auto mt-2 border border-ink/20 rounded-sm hand-inked-border">
+            <table className="w-full text-left border-collapse text-[11px] md:text-[12px] font-sans min-w-[500px]">
               <thead>
                 <tr className="bg-sage/10 text-ink border-b border-ink/20 font-serif">
                   <th className="py-3 px-4 font-semibold">Date</th>
@@ -281,15 +281,15 @@ export default function Dashboard() {
                       <td className="py-3 px-4">
                         <div className="flex gap-[2px]">
                           {Array.from({ length: 5 }).map((_, i) => (
-                            <Star key={i} size={12} className={i < (log.overallRating || 0) ? "text-[#D4AF37] fill-[#D4AF37] drop-shadow-sm" : "text-gray-200"} />
+                            <Star key={i} size={10} className={i < (log.overallRating || 0) ? "text-[#D4AF37] fill-[#D4AF37] md:w-[12px] md:h-[12px]" : "text-gray-200"} />
                           ))}
                         </div>
                       </td>
                       <td className="py-3 px-4">
                         {log.recommendation === 'Yes' ? (
-                          <span className="bg-sage/20 text-sage px-2 py-1 rounded text-[10px] font-bold tracking-wide uppercase">Yes</span>
+                          <span className="bg-sage/20 text-sage px-2 py-1 rounded text-[9px] md:text-[10px] font-bold tracking-wide uppercase">Yes</span>
                         ) : log.recommendation === 'No' ? (
-                          <span className="bg-mahogany/10 text-mahogany px-2 py-1 rounded text-[10px] font-bold tracking-wide uppercase">No</span>
+                          <span className="bg-mahogany/10 text-mahogany px-2 py-1 rounded text-[9px] md:text-[10px] font-bold tracking-wide uppercase">No</span>
                         ) : '-'}
                       </td>
                     </tr>
@@ -305,11 +305,11 @@ export default function Dashboard() {
         </section>
 
         {/* ACTIVITY HEATMAP */}
-        <section className="col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col">
+        <section className="col-span-1 md:col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col">
           <WidgetHeader icon={Flame} title="ACTIVITY TRACKER" />
           <p className="text-[11px] text-ink/60 mb-6 font-medium uppercase tracking-tighter">Your ink footprint</p>
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-full sepia-heatmap" style={{ transform: 'scale(1.1)', transformOrigin: 'center' }}>
+          <div className="flex-1 flex items-center justify-center overflow-hidden">
+            <div className="w-full sepia-heatmap scale-90 md:scale-110 origin-center">
               <CalendarHeatmap
                 startDate={shiftDate(today, -90)}
                 endDate={today}
@@ -327,7 +327,7 @@ export default function Dashboard() {
         </section>
 
         {/* BUCKET LIST / WISHLIST */}
-        <section className="col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col h-[400px]">
+        <section className="col-span-1 md:col-span-4 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-5 flex flex-col h-[350px] md:h-[400px]">
           <WidgetHeader icon={Star} title="THE BUCKET LIST" />
           <p className="text-[11px] font-serif italic text-ink/70 mb-4">Books calling your name...</p>
 
@@ -350,8 +350,8 @@ export default function Dashboard() {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center h-full opacity-30 grayscale">
-                <Star size={32} className="mb-2" />
-                <p className="text-[11px] font-serif italic">Your bucket is empty...</p>
+                <Star size={24} className="mb-2 md:w-[32px] md:h-[32px]" />
+                <p className="text-[10px] md:text-[11px] font-serif italic">Your bucket is empty...</p>
               </div>
             )}
           </div>
@@ -366,25 +366,25 @@ export default function Dashboard() {
 
         {/* ROW 3 */}
         {/* FAVORITE QUOTES */}
-        <section className="col-span-12 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-6">
+        <section className="col-span-1 md:col-span-12 bg-[#FDFCF8] border border-[#E5E0D8] rounded-md shadow-sm p-4 md:p-6">
           <WidgetHeader icon={Quote} title="QUOTES ARCHIVE" />
-          <div className="grid grid-cols-2 gap-6 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
             {stats?.favoriteQuotes?.slice(0, 2).map((quote, idx) => (
-              <div key={idx} className="relative p-6 border-l-4 border-mahogany bg-[#F5E6CA]/30 rounded-r-md group hover:bg-[#F5E6CA]/50 transition-colors">
-                <Quote className="absolute top-2 left-2 text-mahogany/10 rotate-180" size={48} />
-                <p className="text-ink font-handwriting text-lg leading-relaxed mb-4 relative z-10 italic ink-blue-text">
+              <div key={idx} className="relative p-4 md:p-6 border-l-4 border-mahogany bg-[#F5E6CA]/30 rounded-r-md group hover:bg-[#F5E6CA]/50 transition-colors">
+                <Quote className="absolute top-2 left-2 text-mahogany/10 rotate-180 w-8 h-8 md:w-12 md:h-12" size={48} />
+                <p className="text-ink font-handwriting text-base md:text-lg leading-relaxed mb-4 relative z-10 italic ink-blue-text">
                   "{quote.text}"
                 </p>
                 <div className="flex justify-end items-center gap-2 relative z-10">
-                  <div className="h-[1px] w-8 bg-ink/30"></div>
-                  <p className="text-ink text-[12px] font-medium font-sans tracking-wide uppercase">
-                    {quote.author} <span className="text-ink/50 ml-1">({quote.bookTitle})</span>
+                  <div className="h-[1px] w-6 md:w-8 bg-ink/30"></div>
+                  <p className="text-ink text-[10px] md:text-[12px] font-medium font-sans tracking-wide uppercase">
+                    {quote.author} <span className="text-ink/50 ml-1 block md:inline text-[8px] md:text-[12px]">({quote.bookTitle})</span>
                   </p>
                 </div>
               </div>
             ))}
             {(!stats?.favoriteQuotes || stats.favoriteQuotes.length === 0) && (
-              <div className="col-span-2 text-center text-ink/50 font-serif italic py-4">
+              <div className="col-span-1 md:col-span-2 text-center text-ink/50 font-serif italic py-4 text-sm">
                 No quotes saved yet. Add some from your reviews!
               </div>
             )}

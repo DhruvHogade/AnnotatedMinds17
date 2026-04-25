@@ -32,28 +32,28 @@ export default function ReviewGallery() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-6">
+    <div className="max-w-7xl mx-auto py-6 md:py-10 px-4 md:px-6">
       {/* Header Area */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 bg-white/60 p-8 rounded-lg border border-sage/20 shadow-sm washi-tape">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12 bg-white/60 p-4 md:p-8 rounded-lg border border-sage/20 shadow-sm washi-tape">
         <div>
-          <h1 className="text-4xl font-bold text-mahogany font-serif">The Review Gallery</h1>
-          <p className="text-textGray italic font-serif mt-2">A collection of your literary journeys and reflections.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-mahogany font-serif">The Review Gallery</h1>
+          <p className="text-textGray italic font-serif mt-2 text-sm md:text-base">A collection of your literary journeys and reflections.</p>
         </div>
         
-        <div className="flex items-center gap-4">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <div className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-textGray" size={16} />
             <input 
               type="text" 
               placeholder="Search reviews..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-white border border-sage/30 rounded-full text-sm outline-none focus:ring-2 focus:ring-mahogany/20 w-64 transition-all"
+              className="pl-10 pr-4 py-2 bg-white border border-sage/30 rounded-full text-sm outline-none focus:ring-2 focus:ring-mahogany/20 w-full transition-all"
             />
           </div>
           <button 
             onClick={() => navigate('/reviews/new')}
-            className="btn-primary flex items-center gap-2 px-6 py-2 shadow-md hover:scale-105 transition-transform"
+            className="btn-primary flex items-center gap-2 px-6 py-2 shadow-md hover:scale-105 transition-transform w-full sm:w-auto justify-center"
           >
             <Plus size={18} /> New Review
           </button>

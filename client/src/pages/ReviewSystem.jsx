@@ -202,13 +202,13 @@ export default function ReviewSystem() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-8 animate-fade-in">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-mahogany font-serif tracking-wide">
+    <div className="max-w-6xl mx-auto py-4 md:py-8 px-4 md:px-0 animate-fade-in">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-mahogany font-serif tracking-wide">
           {id ? 'Edit Journal Entry' : 'New Journal Entry'}
         </h1>
         {id && (
-          <button type="button" onClick={() => navigate(`/review/${id}`)} className="text-sage hover:text-mahogany transition-colors font-serif uppercase tracking-widest text-sm border border-sage/30 px-4 py-2 rounded">
+          <button type="button" onClick={() => navigate(`/review/${id}`)} className="text-sage hover:text-mahogany transition-colors font-serif uppercase tracking-widest text-xs md:text-sm border border-sage/30 px-4 py-2 rounded w-full sm:w-auto text-center">
             Cancel Edit
           </button>
         )}
@@ -221,7 +221,7 @@ export default function ReviewSystem() {
       )}
       
       <form onSubmit={handleSubmit} 
-            className="bg-parchment shadow-2xl rounded-xl p-8 relative overflow-hidden flex flex-col border border-mahogany/10"
+            className="bg-parchment shadow-2xl rounded-xl p-4 md:p-8 relative overflow-hidden flex flex-col border border-mahogany/10"
             style={{ 
               backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, rgba(143, 151, 121, 0.2) 31px, rgba(143, 151, 121, 0.2) 32px)',
               backgroundAttachment: 'local',
@@ -229,36 +229,36 @@ export default function ReviewSystem() {
             }}>
             
         {/* Top Stripe: Basic Info */}
-        <div className="mb-8 flex flex-col md:flex-row items-start gap-8 bg-white/50 p-6 rounded-lg backdrop-blur-sm border border-mahogany/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]">
-          <div className="flex flex-col gap-3 flex-shrink-0 w-32">
+        <div className="mb-8 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-white/50 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-mahogany/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]">
+          <div className="flex flex-col gap-3 flex-shrink-0">
             {formData.coverImageUrl ? (
-              <img src={formData.coverImageUrl} alt="Cover" className="w-32 h-48 object-cover rounded shadow-lg border border-mahogany/20" />
+              <img src={formData.coverImageUrl} alt="Cover" className="w-24 md:w-32 h-36 md:h-48 object-cover rounded shadow-lg border border-mahogany/20 mx-auto" />
             ) : (
-              <div className="w-32 h-48 bg-mahogany/5 flex items-center justify-center rounded shadow-inner border border-mahogany/20 font-serif text-sm text-mahogany/50 text-center p-2">No Cover</div>
+              <div className="w-24 md:w-32 h-36 md:h-48 bg-mahogany/5 flex items-center justify-center rounded shadow-inner border border-mahogany/20 font-serif text-xs md:text-sm text-mahogany/50 text-center p-2 mx-auto">No Cover</div>
             )}
             <div>
-              <input type="text" name="coverImageUrl" value={formData.coverImageUrl} onChange={handleChange} className="w-full bg-white/50 border border-mahogany/30 focus:border-mahogany rounded outline-none font-sans text-xs text-ink p-1 placeholder-mahogany/30" placeholder="Paste image URL..." />
+              <input type="text" name="coverImageUrl" value={formData.coverImageUrl} onChange={handleChange} className="w-full bg-white/50 border border-mahogany/30 focus:border-mahogany rounded outline-none font-sans text-[10px] md:text-xs text-ink p-1 placeholder-mahogany/30" placeholder="Image URL..." />
             </div>
           </div>
           
           <div className="flex-1 w-full space-y-6">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <label className="block font-serif text-mahogany text-sm font-bold tracking-wider uppercase mb-1">Title</label>
-                <input required type="text" name="title" value={formData.title} onChange={handleChange} className="w-full bg-transparent border-b border-mahogany/40 focus:border-mahogany outline-none font-garamond text-3xl text-ink leading-tight placeholder-mahogany/20" placeholder="Book Title" />
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <label className="block font-serif text-mahogany text-[10px] md:text-sm font-bold tracking-wider uppercase mb-1">Title</label>
+                <input required type="text" name="title" value={formData.title} onChange={handleChange} className="w-full bg-transparent border-b border-mahogany/40 focus:border-mahogany outline-none font-garamond text-xl md:text-3xl text-ink leading-tight placeholder-mahogany/20" placeholder="Book Title" />
               </div>
-              <div className="flex-1">
-                <label className="block font-serif text-mahogany text-sm font-bold tracking-wider uppercase mb-1">Author</label>
+              <div className="flex-1 text-center md:text-left">
+                <label className="block font-serif text-mahogany text-[10px] md:text-sm font-bold tracking-wider uppercase mb-1">Author</label>
                 <div className="flex gap-3">
-                  <input required type="text" name="author" value={formData.author} onChange={handleChange} className="w-full bg-transparent border-b border-mahogany/40 focus:border-mahogany outline-none font-garamond text-2xl text-ink leading-tight placeholder-mahogany/20" placeholder="Author Name" />
-                  <button type="button" onClick={fetchMetadata} disabled={loadingMetadata} className="p-2 rounded-full bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-parchment transition-colors shadow-sm self-end mb-1" title="Auto-fill Metadata">
-                    <Search size={20} />
+                  <input required type="text" name="author" value={formData.author} onChange={handleChange} className="w-full bg-transparent border-b border-mahogany/40 focus:border-mahogany outline-none font-garamond text-lg md:text-2xl text-ink leading-tight placeholder-mahogany/20" placeholder="Author Name" />
+                  <button type="button" onClick={fetchMetadata} disabled={loadingMetadata} className="p-1.5 md:p-2 rounded-full bg-mahogany/10 text-mahogany hover:bg-mahogany hover:text-parchment transition-colors shadow-sm self-end mb-1" title="Auto-fill Metadata">
+                    <Search size={16} className="md:w-[20px] md:h-[20px]" />
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               <div>
                 <label className="block font-serif text-mahogany text-xs font-bold tracking-wider uppercase mb-1">Publisher</label>
                 <input type="text" name="publisher" value={formData.publisher} onChange={handleChange} className="w-full bg-transparent border-b border-mahogany/30 focus:border-mahogany outline-none font-garamond text-lg text-ink leading-tight" />
