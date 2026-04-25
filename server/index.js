@@ -28,13 +28,28 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/quotes', quoteRoutes);
 app.use('/api/goals', goalRoutes);
 
+// Diagnostics for Render
+import fs from 'fs';
+const clientDistPath = path.resolve(__dirname, '../client/dist');
+console.log('__dirname:', __dirname);
+console.log('Looking for client/dist at:', clientDistPath);
+if (fs.existsSync(clientDistPath)) {
+  console.log('client/dist found!');
+  console.log('Contents:', fs.readdirSync(clientDistPath));
+} else {
+  console.log('client/dist NOT found!');
+  // Try checking the parent directory
+  const parentPath = path.resolve(__dirname, '..');
+  console.log('Parent directory contents:', fs.readdirSync(parentPath));
+}
+
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(clientDistPath));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+  res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 
 // MongoDB connection
