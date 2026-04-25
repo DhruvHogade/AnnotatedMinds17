@@ -29,9 +29,7 @@ app.use('/api/quotes', quoteRoutes);
 app.use('/api/goals', goalRoutes);
 
 // Identify the absolute path to the client/dist folder
-const clientDistPath = path.join(__dirname, '..', 'client');
-
-console.log('Looking for client at:', clientDistPath);
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
 
 app.use(express.static(clientDistPath));
 
