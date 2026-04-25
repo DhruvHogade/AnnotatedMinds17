@@ -20,7 +20,7 @@ export default function Dashboard() {
     try {
       const token = localStorage.getItem('token');
       const headers = { 'Authorization': `Bearer ${token}` };
-      const res = await fetch('http://localhost:5000/api/dashboard/stats', { headers });
+      const res = await fetch('/api/dashboard/stats', { headers });
       if (res.ok) {
         const statsData = await res.json();
         setStats(statsData);
@@ -35,7 +35,7 @@ export default function Dashboard() {
   const handleUpdatePages = async (bookId) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/books/${bookId}`, {
+      const res = await fetch(`/api/books/${bookId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default function Dashboard() {
   const handleStatusChange = async (bookId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/books/${bookId}`, {
+      const res = await fetch(`/api/books/${bookId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export default function Dashboard() {
         fetchData();
         if (newStatus === 'Finished') {
           if (window.confirm("You've finished the story! Would you like to write your journal entry now?")) {
-            const checkRes = await fetch(`http://localhost:5000/api/books/check-review/${bookId}`, {
+            const checkRes = await fetch(`/api/books/check-review/${bookId}`, {
               headers: { 'Authorization': `Bearer ${token}` }
             });
             if (checkRes.ok) {
@@ -123,7 +123,7 @@ export default function Dashboard() {
     if (!window.confirm("Are you sure you want to remove this book from your library? This will also delete any associated reviews and reading logs.")) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/books/${id}`, {
+      const res = await fetch(`/api/books/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

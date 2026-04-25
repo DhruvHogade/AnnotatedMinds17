@@ -57,7 +57,7 @@ export default function JournalEntryView() {
   useEffect(() => {
     const fetchEntry = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/reviews/${id}`);
+        const res = await fetch(`/api/reviews/${id}`);
         if (res.ok) {
           const data = await res.json();
           setEntry(data);
@@ -73,7 +73,7 @@ export default function JournalEntryView() {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/reviews/${id}`, {
+      const res = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {

@@ -1,0 +1,9 @@
+{
+  "name": "annotatedminds",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "node server/index.js"
+  }
+}

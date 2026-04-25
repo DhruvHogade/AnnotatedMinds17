@@ -37,7 +37,7 @@ export default function ReviewSystem() {
     if (id) {
       const fetchReview = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/reviews/${id}`);
+          const res = await fetch(`/api/reviews/${id}`);
           if (res.ok) {
             const data = await res.json();
             setFormData({
@@ -57,7 +57,7 @@ export default function ReviewSystem() {
       const fetchBookDetails = async () => {
         try {
           const token = localStorage.getItem('token');
-          const res = await fetch(`http://localhost:5000/api/books`, {
+          const res = await fetch(`/api/books`, {
              headers: { 'Authorization': `Bearer ${token}` }
           });
           if (res.ok) {
@@ -177,7 +177,7 @@ export default function ReviewSystem() {
         payload.otherBooksByAuthor = payload.otherBooksByAuthor.split(',').map(s => s.trim()).filter(Boolean);
       }
       
-      const url = id ? `http://localhost:5000/api/reviews/${id}` : 'http://localhost:5000/api/reviews';
+      const url = id ? `/api/reviews/${id}` : '/api/reviews';
       const method = id ? 'PUT' : 'POST';
       
       const res = await fetch(url, {

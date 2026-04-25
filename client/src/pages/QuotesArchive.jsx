@@ -19,7 +19,7 @@ export default function QuotesArchive() {
 
   const fetchQuotes = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/quotes');
+      const res = await fetch('/api/quotes');
       if (res.ok) {
         const data = await res.json();
         setQuotes(data);
@@ -34,7 +34,7 @@ export default function QuotesArchive() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/quotes', {
+      const res = await fetch('/api/quotes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -55,7 +55,7 @@ export default function QuotesArchive() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this quote?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/quotes/${id}`, {
+      const res = await fetch(`/api/quotes/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {

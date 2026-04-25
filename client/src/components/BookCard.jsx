@@ -15,7 +15,7 @@ export default function BookCard({ book, mode = 'card', onUpdate, onEdit, onDele
   const checkReview = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/books/check-review/${book._id}`, {
+      const res = await fetch(`/api/books/check-review/${book._id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {

@@ -26,8 +26,8 @@ export default function Library() {
       const token = localStorage.getItem('token');
       const headers = { 'Authorization': `Bearer ${token}` };
       const [booksRes, wishlistRes] = await Promise.all([
-        fetch('http://localhost:5000/api/books', { headers }),
-        fetch('http://localhost:5000/api/goals/wishlist', { headers })
+        fetch('/api/books', { headers }),
+        fetch('/api/goals/wishlist', { headers })
       ]);
       
       if (booksRes.ok) setBooks(await booksRes.json());
@@ -59,7 +59,7 @@ export default function Library() {
     try {
       const token = localStorage.getItem('token');
       const isEditing = !!editingBook;
-      const url = isEditing ? `http://localhost:5000/api/books/${editingBook._id}` : 'http://localhost:5000/api/books';
+      const url = isEditing ? `/api/books/${editingBook._id}` : '/api/books';
       const method = isEditing ? 'PUT' : 'POST';
       
       const payload = {
@@ -120,7 +120,7 @@ export default function Library() {
     if (!window.confirm("Are you sure you want to remove this book from your library? This will also delete any associated reviews and reading logs.")) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/books/${id}`, {
+      const res = await fetch(`/api/books/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

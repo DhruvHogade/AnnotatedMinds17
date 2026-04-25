@@ -19,9 +19,9 @@ export default function ReadingStrategy() {
   const fetchData = async () => {
     try {
       const [goalsRes, wishlistRes, booksRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/goals'),
-        axios.get('http://localhost:5000/api/goals/wishlist'),
-        axios.get('http://localhost:5000/api/books')
+        axios.get('/api/goals'),
+        axios.get('/api/goals/wishlist'),
+        axios.get('/api/books')
       ]);
       setGoals(goalsRes.data);
       setWishlist(wishlistRes.data);
@@ -38,7 +38,7 @@ export default function ReadingStrategy() {
 
   const updateGoals = async (updates) => {
     try {
-      const res = await axios.put('http://localhost:5000/api/goals', updates);
+      const res = await axios.put('/api/goals', updates);
       setGoals(res.data);
     } catch (err) {
       console.error(err);
@@ -49,7 +49,7 @@ export default function ReadingStrategy() {
     if (!searchQuery.title) return;
     setSearching(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/books/search?title=${searchQuery.title}&author=${searchQuery.author}`);
+      const res = await axios.get(`/api/books/search?title=${searchQuery.title}&author=${searchQuery.author}`);
       setSearchResult(res.data);
     } catch (err) {
       console.error(err);
@@ -61,7 +61,7 @@ export default function ReadingStrategy() {
   const addToWishlist = async () => {
     if (!searchResult) return;
     try {
-      await axios.post('http://localhost:5000/api/goals/wishlist', {
+      await axios.post('/api/goals/wishlist', {
         title: searchResult.title,
         author: searchResult.authors,
         coverImage: searchResult.coverImg,
@@ -78,7 +78,7 @@ export default function ReadingStrategy() {
 
   const purchaseBook = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/goals/wishlist/${id}/purchase`);
+      await axios.post(`/api/goals/wishlist/${id}/purchase`);
       fetchData();
     } catch (err) {
       console.error(err);
@@ -87,7 +87,7 @@ export default function ReadingStrategy() {
 
   const deleteWishlistItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/goals/wishlist/${id}`);
+      await axios.delete(`/api/goals/wishlist/${id}`);
       fetchData();
     } catch (err) {
       console.error(err);
